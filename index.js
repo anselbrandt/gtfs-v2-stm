@@ -13,8 +13,9 @@ async function main() {
       apikey: STMKEY,
     },
   });
-  const buffer = await response.buffer();
-  const decoded = FeedMessage.decode(buffer);
+  const arrayBuffer = await response.arrayBuffer();
+  const array = new Uint8Array(arrayBuffer);
+  const decoded = FeedMessage.decode(array);
   const vehicles = decoded.entity;
   console.log(vehicles);
   console.log(decoded.header);
